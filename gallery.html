@@ -15,17 +15,38 @@
             position: relative;
         }
         
-        /* Стиль для всех картинок */
+        /* Контейнер для картинки с подписью */
         .corner-img {
             position: absolute;
-            width: 250px;  /* ширина картинки */
-            height: auto;   /* высота подстроится сама */
-            opacity: 0.9;
+            width: auto;
+            text-align: center;
             transition: transform 0.3s;
         }
         
         .corner-img:hover {
             transform: scale(1.05);
+        }
+        
+        /* Сама картинка */
+        .corner-img img {
+            width: 200px;  /* ширина картинки (поменяй, если надо) */
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            display: block;
+        }
+        
+        /* Подпись под картинкой */
+        .corner-img figcaption {
+            font-family: 'Press Start 2P', monospace;
+            font-size: 10px;
+            color: white;
+            text-shadow: 1px 1px 2px black;
+            margin-top: 8px;
+            background: rgba(0,0,0,0.5);
+            padding: 5px 8px;
+            border-radius: 20px;
+            display: inline-block;
         }
         
         /* Углы */
@@ -44,13 +65,6 @@
         .bottom-right {
             bottom: 20px;
             right: 20px;
-        }
-        
-        /* Центр (если хочешь одну картинку по центру) */
-        .center {
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
         }
         
         /* Кнопка назад */
@@ -72,10 +86,42 @@
         .back-btn:hover {
             background: #ff1493;
         }
+        
+        /* Настройки для телефона */
+        @media (max-width: 768px) {
+            .corner-img img {
+                width: 100px;  /* на телефоне картинки меньше */
+            }
+            .corner-img figcaption {
+                font-size: 6px;
+                margin-top: 4px;
+                padding: 3px 6px;
+            }
+            .top-left {
+                top: 10px;
+                left: 10px;
+            }
+            .top-right {
+                top: 10px;
+                right: 10px;
+            }
+            .bottom-left {
+                bottom: 10px;
+                left: 10px;
+            }
+            .bottom-right {
+                bottom: 10px;
+                right: 10px;
+            }
+            .back-btn {
+                font-size: 8px;
+                padding: 8px 16px;
+            }
+        }
     </style>
 </head>
 <body>
-        <!-- Верхний левый угол -->
+    <!-- Верхний левый угол -->
     <figure class="corner-img top-left">
         <img src="d0e412b8d4718fcd4fb9c6ce12b7afbc.jpg" alt="я">
         <figcaption>я</figcaption>
