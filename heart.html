@@ -48,6 +48,12 @@
             margin-bottom: 10px;
         }
         
+        /* Контейнер для одного трека */
+        .track-container {
+            text-align: center;
+            margin: 20px;
+        }
+        
         /* Кнопка назад */
         .back-btn {
             position: absolute;
@@ -84,8 +90,11 @@
     </style>
 </head>
 <body>
-    <!-- Невидимый аудиоплеер -->
-    <audio id="bg-music" src="takizava - ведь я без тебя никто.mp3" loop></audio>
+    <!-- Первый трек -->
+    <audio id="bg-music-1" src="takizava - ведь я без тебя никто.mp3" loop></audio>
+    
+    <!-- Второй трек -->
+    <audio id="bg-music-2" src="название_второго_трека.mp3" loop></audio>
     
     <!-- Текстовый блок -->
     <div class="message">
@@ -95,18 +104,30 @@
         хочу видеть на тебе всегда твою улыбку<br>
     </div>
     
-    <!-- Блок управления музыкой под текстом -->
-    <div style="text-align: center; margin: 20px;">
-        <!-- Название трека -->
+    <!-- Трек 1 -->
+    <div class="track-container">
         <div class="track-title">🎵 takizava — ведь я без тебя никто</div>
-        
         <div style="display: inline-flex; gap: 20px; align-items: center; background: rgba(0,0,0,0.6); padding: 12px 25px; border-radius: 40px;">
-            <button id="music-toggle" style="background: #ff69b4; color: white; border: none; border-radius: 50%; width: 45px; height: 45px; cursor: pointer; font-size: 20px;">
+            <button id="music-toggle-1" style="background: #ff69b4; color: white; border: none; border-radius: 50%; width: 45px; height: 45px; cursor: pointer; font-size: 20px;">
                 <i class="fas fa-music"></i>
             </button>
             <div style="display: flex; flex-direction: column; align-items: center;">
-                <input type="range" id="volume-slider" min="0" max="1" step="0.01" value="0.5" style="width: 100px; cursor: pointer;">
-                <span style="font-size: 8px; color: white; margin-top: 3px;">громкость(трек очень громкий)</span>
+                <input type="range" id="volume-slider-1" class="volume-slider" min="0" max="1" step="0.01" value="0.5" style="width: 100px; cursor: pointer;">
+                <span style="font-size: 8px; color: white; margin-top: 3px;">громкость(очень громкий трек)</span>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Трек 2 -->
+    <div class="track-container">
+        <div class="track-title">🎵 01. @коронован - нежность</div>
+        <div style="display: inline-flex; gap: 20px; align-items: center; background: rgba(0,0,0,0.6); padding: 12px 25px; border-radius: 40px;">
+            <button id="music-toggle-2" style="background: #ff69b4; color: white; border: none; border-radius: 50%; width: 45px; height: 45px; cursor: pointer; font-size: 20px;">
+                <i class="fas fa-music"></i>
+            </button>
+            <div style="display: flex; flex-direction: column; align-items: center;">
+                <input type="range" id="volume-slider-2" class="volume-slider" min="0" max="1" step="0.01" value="0.5" style="width: 100px; cursor: pointer;">
+                <span style="font-size: 8px; color: white; margin-top: 3px;">громкость</span>
             </div>
         </div>
     </div>
@@ -118,26 +139,61 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     
     <script>
-        const audio = document.getElementById('bg-music');
-        const playButton = document.getElementById('music-toggle');
-        const icon = playButton.querySelector('i');
-        const volumeSlider = document.getElementById('volume-slider');
+        // Трек 1
+        const audio1 = document.getElementById('bg-music-1');
+        const playButton1 = document.getElementById('music-toggle-1');
+        const icon1 = playButton1.querySelector('i');
+        const volumeSlider1 = document.getElementById('volume-slider-1');
         
-        audio.volume = volumeSlider.value;
+        audio1.volume = volumeSlider1.value;
         
-        function toggleMusic() {
-            if (audio.paused) {
-                audio.play().catch(e => console.log('Автовоспроизведение заблокировано'));
-                icon.className = 'fas fa-pause';
+        function toggleMusic1() {
+            if (audio1.paused) {
+                // Останавливаем второй трек, если он играет
+                if (!audio2.paused) {
+                    audio2.pause();
+                    const icon2 = document.getElementById('music-toggle-2').querySelector('i');
+                    icon2.className = 'fas fa-music';
+                }
+                audio1.play().catch(e => console.log('Автовоспроизведение заблокировано'));
+                icon1.className = 'fas fa-pause';
             } else {
-                audio.pause();
-                icon.className = 'fas fa-music';
+                audio1.pause();
+                icon1.className = 'fas fa-music';
             }
         }
-        playButton.addEventListener('click', toggleMusic);
+        playButton1.addEventListener('click', toggleMusic1);
         
-        volumeSlider.addEventListener('input', function() {
-            audio.volume = this.value;
+        volumeSlider1.addEventListener('input', function() {
+            audio1.volume = this.value;
+        });
+        
+        // Трек 2
+        const audio2 = document.getElementById('bg-music-2');
+        const playButton2 = document.getElementById('music-toggle-2');
+        const icon2 = playButton2.querySelector('i');
+        const volumeSlider2 = document.getElementById('volume-slider-2');
+        
+        audio2.volume = volumeSlider2.value;
+        
+        function toggleMusic2() {
+            if (audio2.paused) {
+                // Останавливаем первый трек, если он играет
+                if (!audio1.paused) {
+                    audio1.pause();
+                    icon1.className = 'fas fa-music';
+                }
+                audio2.play().catch(e => console.log('Автовоспроизведение заблокировано'));
+                icon2.className = 'fas fa-pause';
+            } else {
+                audio2.pause();
+                icon2.className = 'fas fa-music';
+            }
+        }
+        playButton2.addEventListener('click', toggleMusic2);
+        
+        volumeSlider2.addEventListener('input', function() {
+            audio2.volume = this.value;
         });
     </script>
 </body>
