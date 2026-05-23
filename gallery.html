@@ -29,7 +29,7 @@
         
         /* Сама картинка */
         .corner-img img {
-            width: 200px;  /* ширина картинки (поменяй, если надо) */
+            width: 200px;
             height: auto;
             border-radius: 15px;
             box-shadow: 0 4px 8px rgba(0,0,0,0.2);
@@ -87,10 +87,33 @@
             background: #ff1493;
         }
         
+        /* ========== НОВАЯ КНОПКА ПО ЦЕНТРУ ========== */
+        .center-btn {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: 'Press Start 2P', monospace;
+            font-size: 16px;
+            padding: 15px 30px;
+            background: #ff69b4;
+            color: white;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            z-index: 10;
+            transition: 0.2s;
+            white-space: nowrap;
+        }
+        .center-btn:hover {
+            background: #ff1493;
+            transform: translate(-50%, -50%) scale(1.05);
+        }
+        
         /* Настройки для телефона */
         @media (max-width: 768px) {
             .corner-img img {
-                width: 100px;  /* на телефоне картинки меньше */
+                width: 100px;
             }
             .corner-img figcaption {
                 font-size: 6px;
@@ -117,33 +140,38 @@
                 font-size: 8px;
                 padding: 8px 16px;
             }
+            /* Центральная кнопка на телефоне */
+            .center-btn {
+                font-size: 10px;
+                padding: 10px 20px;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Верхний левый угол -->
+    <!-- Картинки по углам -->
     <figure class="corner-img top-left">
         <img src="d0e412b8d4718fcd4fb9c6ce12b7afbc.jpg" alt="я">
         <figcaption>я</figcaption>
     </figure>
     
-    <!-- Верхний правый угол -->
     <figure class="corner-img top-right">
         <img src="f1d1c9e3b16e4481e5a3b058064b7d93.jpg" alt="тебя">
         <figcaption>тебя</figcaption>
     </figure>
     
-    <!-- Нижний левый угол -->
     <figure class="corner-img bottom-left">
         <img src="20.05.2026_4-03-03.png" alt="очень">
         <figcaption>очень</figcaption>
     </figure>
     
-    <!-- Нижний правый угол -->
     <figure class="corner-img bottom-right">
         <img src="84195a2d8a73058cab06d867620c00d6.jpg" alt="люблю">
         <figcaption>люблю</figcaption>
     </figure>
+    
+    <!-- НОВАЯ КНОПКА ПО ЦЕНТРУ -->
+    <button class="center-btn" onclick="window.location.href='heart.html'">💖 нажми 💖</button>
     
     <!-- Кнопка назад -->
     <button class="back-btn" onclick="window.location.href='index.html'">назад</button>
