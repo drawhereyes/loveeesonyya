@@ -1,46 +1,31 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Галерея для тебя ❤️</title>
+    <title>для тибя</title>
     <meta charset="UTF-8">
     <style>
         body {
             font-family: Arial, sans-serif;
             text-align: center;
+            margin-top: 50px;
             background: #f0f0f0;
-            margin: 0;
-            padding: 20px;
         }
-        h1 {
-            color: #333;
-            margin-top: 30px;
+        button {
+            padding: 15px 30px;
+            font-size: 18px;
+            background: #ff69b4;
+            color: white;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
         }
-        .gallery {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 20px;
-            padding: 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        .gallery img {
-            width: 200px;
-            height: 200px;
-            object-fit: cover;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            transition: transform 0.2s;
-        }
-        .gallery img:hover {
-            transform: scale(1.05);
+        button:hover {
+            background: #ff1493;
         }
     </style>
 </head>
 <body>
-    <h1>Мои любимые картинки для тебя 💖</h1>
-    <div class="gallery">
-        <img src="d0e412b8d4718fcd4fb9c6ce12b7afbc.jpg" alt="люблюю">
-    </div>
+    <h1>💖</h1>
+    <button onclick="window.location.href='gallery.html'">нажимай</button>
 </body>
 </html>
