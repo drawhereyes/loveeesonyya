@@ -4,17 +4,43 @@
     <title>Галерея для тебя ❤️</title>
     <meta charset="UTF-8">
     <style>
-        body { font-family: sans-serif; text-align: center; background: #f0f0f0; }
-        .gallery { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; padding: 20px; }
-        .gallery img { width: 200px; height: 200px; object-fit: cover; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); transition: transform 0.2s; }
-        .gallery img:hover { transform: scale(1.05); }
-        h1 { color: #333; margin-top: 30px; }
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background: #f0f0f0;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            color: #333;
+            margin-top: 30px;
+        }
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .gallery img {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.2s;
+        }
+        .gallery img:hover {
+            transform: scale(1.05);
+        }
     </style>
 </head>
 <body>
-    <h1>Твои милые картинки 💖</h1>
+    <h1>Мои любимые картинки для тебя 💖</h1>
     <div class="gallery">
-        <img src="https://i127.fastpic.org/big/2026/0523/e8/77d71f1bed760b180f353f80da66fde8.jpg" alt="Описание">
+        <img src="имя_файла.jpg" alt="Описание">
     </div>
 </body>
 </html>
