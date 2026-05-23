@@ -1,1 +1,130 @@
-
+<!DOCTYPE html>
+<html>
+<head>
+    <title>сердечко 💖</title>
+    <meta charset="UTF-8">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            background-image: url('2f6abdd681629d7a62b92175b36abc63+(1).jpg');  /* поменяй на свою */
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+        
+        /* Текстовый блок */
+        .message {
+            font-family: 'Press Start 2P', monospace;
+            font-size: 14px;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            background: rgba(0,0,0,0.6);
+            padding: 30px;
+            border-radius: 30px;
+            max-width: 80%;
+            text-align: center;
+            line-height: 1.6;
+            margin: 20px;
+        }
+        
+        /* Кнопка назад */
+        .back-btn {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: 'Press Start 2P', monospace;
+            font-size: 12px;
+            padding: 10px 20px;
+            background: #ff69b4;
+            color: white;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            z-index: 10;
+        }
+        .back-btn:hover {
+            background: #ff1493;
+        }
+        
+        /* Кнопка управления музыкой */
+        .music-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: #ff69b4;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 20px;
+            z-index: 1000;
+            transition: 0.2s;
+        }
+        .music-btn:hover {
+            background: #ff1493;
+            transform: scale(1.05);
+        }
+        
+        @media (max-width: 768px) {
+            .message {
+                font-size: 8px;
+                padding: 20px;
+            }
+            .back-btn {
+                font-size: 8px;
+                padding: 8px 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Невидимый аудиоплеер -->
+    <audio id="bg-music" src="takizava - ведь я без тебя никто.mp3" loop></audio>
+    
+    <!-- Кнопка управления музыкой -->
+    <button id="music-toggle" class="music-btn">
+        <i class="fas fa-music"></i>
+    </button>
+    
+    <!-- Текстовый блок -->
+    <div class="message">
+        я люблю тебя очень<br>
+        прости за то что иногда тебя не слышу <br>
+        я не буду больше делать так<br>
+        чтобы на тебе всегда была улыбка<br>
+    </div>
+    
+    <!-- Кнопка назад -->
+    <button class="back-btn" onclick="window.location.href='gallery.html'">назад</button>
+    
+    <!-- Подключаем библиотеку иконок для музыки -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <script>
+        const audio = document.getElementById('bg-music');
+        const playButton = document.getElementById('music-toggle');
+        const icon = playButton.querySelector('i');
+        
+        function toggleMusic() {
+            if (audio.paused) {
+                audio.play().catch(e => console.log('Автовоспроизведение заблокировано'));
+                icon.className = 'fas fa-pause';
+            } else {
+                audio.pause();
+                icon.className = 'fas fa-music';
+            }
+        }
+        playButton.addEventListener('click', toggleMusic);
+    </script>
+</body>
+</html>
