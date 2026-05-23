@@ -9,11 +9,12 @@
             margin: 0;
             padding: 0;
             min-height: 100vh;
-            background-image: url('2f6abdd681629d7a62b92175b36abc63+(1).jpg');  /* поменяй на свою */
+            background-image: url('2f6abdd681629d7a62b92175b36abc63+(1).jpg');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             position: relative;
@@ -54,27 +55,6 @@
             background: #ff1493;
         }
         
-        /* Кнопка управления музыкой */
-        .music-btn {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            background: #ff69b4;
-            color: white;
-            border: none;
-            cursor: pointer;
-            font-size: 20px;
-            z-index: 1000;
-            transition: 0.2s;
-        }
-        .music-btn:hover {
-            background: #ff1493;
-            transform: scale(1.05);
-        }
-        
         @media (max-width: 768px) {
             .message {
                 font-size: 8px;
@@ -91,17 +71,25 @@
     <!-- Невидимый аудиоплеер -->
     <audio id="bg-music" src="takizava - ведь я без тебя никто.mp3" loop></audio>
     
-    <!-- Кнопка управления музыкой -->
-    <button id="music-toggle" class="music-btn">
-        <i class="fas fa-music"></i>
-    </button>
-    
     <!-- Текстовый блок -->
     <div class="message">
         я люблю тебя очень<br>
         прости за то что иногда тебя не слышу <br>
         я не буду больше делать так<br>
-        чтобы на тебе всегда была улыбка<br>
+        хочу видеть на тебе всегда твою улыбку<br>
+    </div>
+    
+    <!-- Блок управления музыкой под текстом -->
+    <div style="text-align: center; margin: 20px;">
+        <div style="display: inline-flex; gap: 20px; align-items: center; background: rgba(0,0,0,0.6); padding: 12px 25px; border-radius: 40px;">
+            <button id="music-toggle" style="background: #ff69b4; color: white; border: none; border-radius: 50%; width: 45px; height: 45px; cursor: pointer; font-size: 20px;">
+                <i class="fas fa-music"></i>
+            </button>
+            <div style="display: flex; flex-direction: column; align-items: center;">
+                <input type="range" id="volume-slider" min="0" max="1" step="0.01" value="0.5" style="width: 100px; cursor: pointer;">
+                <span style="font-size: 8px; color: white; margin-top: 3px;">громкость</span>
+            </div>
+        </div>
     </div>
     
     <!-- Кнопка назад -->
@@ -114,6 +102,9 @@
         const audio = document.getElementById('bg-music');
         const playButton = document.getElementById('music-toggle');
         const icon = playButton.querySelector('i');
+        const volumeSlider = document.getElementById('volume-slider');
+        
+        audio.volume = volumeSlider.value;
         
         function toggleMusic() {
             if (audio.paused) {
@@ -125,6 +116,10 @@
             }
         }
         playButton.addEventListener('click', toggleMusic);
+        
+        volumeSlider.addEventListener('input', function() {
+            audio.volume = this.value;
+        });
     </script>
 </body>
 </html>
